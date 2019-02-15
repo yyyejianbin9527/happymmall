@@ -1,7 +1,64 @@
-<!DOCTYPE web-app PUBLIC
- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
- "http://java.sun.com/dtd/web-app_2_3.dtd" >
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         id="WebApp_ID" version="2.5">
 
-<web-app>
   <display-name>Archetype Created Web Application</display-name>
+
+  <filter>
+    <!--UTF-8 编码，拦截/* - 所有请求-->
+    <filter-name>characterEncodingFilter</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+    <init-param>
+      <param-name>forceEncoding</param-name>
+      <param-value>true</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>characterEncodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+
+  <!--web 容器启动 / 关闭的监听器-->
+  <listener>
+    <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+  </listener>
+
+  <!--将web 容器与 Spring容器 进行整合的监听器-->
+  <!--ContextLoaderListener 加载 applicationContext.xml-->
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+
+  <!--Spring 配置文件-->
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>
+      classpath:applicationContext.xml
+    </param-value>
+  </context-param>
+
+  <!--Spring MVC配置-->
+  <servlet>
+    <servlet-name>dispatcher</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <!--Servlet 配置，当 =0 或 > 0时，在启动时将会初始化该Servlet-->
+    <load-on-startup>1</load-on-startup>
+
+  </servlet>
+
+
+  <!--所有 *.do 的请求都被 Spring MVC 拦截-->
+  <servlet-mapping>
+    <servlet-name>dispatcher</servlet-name>
+    <url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+
 </web-app>
+
