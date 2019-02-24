@@ -3,24 +3,19 @@
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
         <encoding>UTF-8</encoding>
         <encoder>
-            <!--日志格式-->
             <pattern>[%d{HH:mm:ss.SSS}][%p][%c{40}][%t] %m%n</pattern>
         </encoder>
-
-        <!--大于 debug 级别才显示-->
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>DEBUG</level>
         </filter>
     </appender>
 
-    <!--项目日志，可以Rolling-->
     <appender name="mmall" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <!--<File>d:/mmalllog/mmall.log</File>-->
         <File>/developer/apache-tomcat-7.0.73/logs/mmall.log</File>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>/developer/apache-tomcat-7.0.73/logs/mmall.log.%d{yyyy-MM-dd}.gz</fileNamePattern>
             <append>true</append>
-            <!--暂存 10 天-->
             <maxHistory>10</maxHistory>
         </rollingPolicy>
         <encoder>
@@ -28,7 +23,7 @@
         </encoder>
     </appender>
 
-    <!--错误日志，同上-->
+
     <appender name="error" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <!--<File>d:/mmalllog/error.log</File>-->
         <File>/developer/apache-tomcat-7.0.73/logs/error.log</File>
@@ -41,15 +36,12 @@
         <encoder>
             <pattern>[%d{HH:mm:ss.SSS}][%p][%c{40}][%t] %m%n</pattern>
         </encoder>
-
-        <!--级别限制-->
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
             <level>ERROR</level>
             <onMatch>ACCEPT</onMatch>
             <onMismatch>DENY</onMismatch>
         </filter>
     </appender>
-
 
     <logger name="com.mmall" additivity="false" level="INFO" >
         <appender-ref ref="mmall" />
@@ -58,23 +50,23 @@
 
 
 
-    <!--  mybatis log 日志 -->
+    <!-- geelynote mybatis log 日志 -->
 
     <logger name="com.mmall.dao" level="DEBUG"/>
 
     <!--<logger name="com.ibatis.sqlmap.engine.impl.SqlMapClientDelegate" level="DEBUG" >-->
-    <!--<appender-ref ref="console"/>-->
+        <!--<appender-ref ref="console"/>-->
     <!--</logger>-->
 
     <!--<logger name="java.sql.Connection" level="DEBUG">-->
-    <!--<appender-ref ref="console"/>-->
+        <!--<appender-ref ref="console"/>-->
     <!--</logger>-->
     <!--<logger name="java.sql.Statement" level="DEBUG">-->
-    <!--<appender-ref ref="console"/>-->
+        <!--<appender-ref ref="console"/>-->
     <!--</logger>-->
 
     <!--<logger name="java.sql.PreparedStatement" level="DEBUG">-->
-    <!--<appender-ref ref="console"/>-->
+        <!--<appender-ref ref="console"/>-->
     <!--</logger>-->
 
 
