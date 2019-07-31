@@ -179,8 +179,8 @@
 
   <delete id="deleteByShippingIdUserId" parameterType="map">
     DELETE  FROM  mmall_shipping
-    where id = #{shippingId}
-    and user_id = #{userId}
+    where id =
+    and user_id = ##{shippingId}{userId}
   </delete>
 
   <update id="updateByShipping" parameterType="com.mmall.pojo.Shipping">
