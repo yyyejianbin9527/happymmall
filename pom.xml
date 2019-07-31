@@ -297,9 +297,6 @@
   <profiles>
     <profile>
       <id>dev</id>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
       <properties>
         <deploy.type>dev</deploy.type>
       </properties>
@@ -312,6 +309,9 @@
     </profile>
     <profile>
       <id>beta</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
       <properties>
         <deploy.type>beta</deploy.type>
       </properties>
